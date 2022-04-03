@@ -39,7 +39,7 @@ compileTestJava {
 
 frontend {
     nodeVersion = '16.14.2'
-    assembleScript = 'run prod'
+    assembleScript = 'run build:prod'
     cleanScript = 'run clean'
     checkScript = 'run test-ci'
     packageJsonDirectory = file("${rootProject.projectDir}/src/main/webapp")
