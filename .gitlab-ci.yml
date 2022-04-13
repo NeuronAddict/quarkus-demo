@@ -1,0 +1,16 @@
+stages:
+  - test
+  - build
+  - test
+
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
+cache:
+  paths:
+    - .gradle
+
+test-java:
+  image: registry.access.redhat.com/ubi8/openjdk-11:1.11
+  script:
+    - ./gradlew check
