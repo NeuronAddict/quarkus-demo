@@ -27,6 +27,8 @@ build-native:
     name: native-binary
     paths:
       - build/*-runner
+  variables:
+    JAVA_OPTS: "-Xmx2048M"
 
 docker-native-build:
   stage: dockerize
