@@ -6,3 +6,10 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "npm"
+    directory: "/src/main/webapp"
+    schedule:
+      interval: "daily"
+  
