@@ -28,7 +28,7 @@ build-native:
     paths:
       - build/*-runner
   variables:
-    JAVA_OPTS: "-Xmx10G -Dquarkus.native.native-image-xmx=8G"
+    JAVA_OPTS: "-Xmx8G -Dquarkus.native.native-image-xmx=6G"
 
 docker-native-build:
   stage: dockerize
