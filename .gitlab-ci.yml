@@ -62,7 +62,7 @@ build-native:
       - build
       - src/main/webapp/build
   variables:
-    JAVA_OPTS: "-Xmx4G -Dquarkus.native.native-image-xmx=4G"
+    JAVA_OPTS: "-Xmx4G -Dquarkus.native.native-image-xmx=3500M"
 
 test-native:
   image:  quay.io/quarkus/ubi-quarkus-native-image:21.3.1-java11
@@ -78,7 +78,7 @@ test-native:
       - src/main/webapp/node_modules
       - src/main/webapp/build
   variables:
-    JAVA_OPTS: "-Xmx4G -Dquarkus.native.native-image-xmx=3G"
+    JAVA_OPTS: "-Xmx4G -Dquarkus.native.native-image-xmx=3500M"
 
 docker-native-build:
   stage: dockerize
