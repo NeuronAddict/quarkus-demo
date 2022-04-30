@@ -50,7 +50,7 @@ build-native:
   image:  quay.io/quarkus/ubi-quarkus-native-image:21.3.1-java11
   stage: build-native
   script:
-    - ./gradlew buildNative
+    - ./gradlew build -Dquarkus.package.type=native
   artifacts:
     name: native-binary
     paths:
