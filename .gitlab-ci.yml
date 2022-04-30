@@ -71,6 +71,7 @@ test-native:
   image:  quay.io/quarkus/ubi-quarkus-native-image:21.3.1-java11
   stage: test-native
   script:
+    - ls -al build/*
     - ./gradlew testNative
   cache:
     - key: "$CI_COMMIT_REF_SLUG"
