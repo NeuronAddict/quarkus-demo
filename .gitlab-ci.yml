@@ -35,6 +35,7 @@ build:
         - build
         - src/main/webapp/node_modules
         - src/main/webapp/build
+        - src/main/resources/META-INF/resources
 
 test:
   image: $JAVA_IMAGE
@@ -49,6 +50,7 @@ test:
         - build
         - src/main/webapp/build
         - src/main/webapp/node_modules
+        - src/main/resources/META-INF/resources
 
 build-native:
   image:  $JAVA_IMAGE
@@ -64,6 +66,7 @@ build-native:
       paths:
         - .gradle
         - build
+        - src/main/resources/META-INF/resources
   variables:
     JAVA_OPTS: "-Xmx4G -Dquarkus.native.native-image-xmx=3500M"
 
