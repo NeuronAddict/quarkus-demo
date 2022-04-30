@@ -43,6 +43,8 @@ test-native:
   stage: test-native
   script:
     - ./gradlew testNative
+  variables:
+    JAVA_OPTS: "-Xmx4G -Dquarkus.native.native-image-xmx=3G"
 
 docker-native-build:
   stage: dockerize
