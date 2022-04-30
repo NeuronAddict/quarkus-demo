@@ -72,7 +72,7 @@ test-native:
   stage: test-native
   script:
     - ls -al build/*
-    - ./gradlew testNative
+    - ./gradlew testNative -Dorg.gradle.caching=true
   cache:
     - key: "$CI_COMMIT_REF_SLUG"
       paths:
