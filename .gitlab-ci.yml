@@ -8,23 +8,29 @@ stages:
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
-cache:
-  paths:
-    - .gradle
-    - node
-    - build
-
 get dependencies:
   image: quay.io/quarkus/ubi-quarkus-native-image:21.3.1-java11
   stage: dependencies
   script:
     - ./gradlew quarkusGoOffline
+  cache:
+    key: "$CI_COMMIT_REF_SLUG"
+    paths:
+      - .gradle
 
 test-java:
   image: quay.io/quarkus/ubi-quarkus-native-image:21.3.1-java11
   stage: test
   script:
     - ./gradlew check
+  cache:
+    key: "$CI_COMMIT_REF_SLUG"
+    paths:
+      - .gradle
+      - node
+      - build
+      - src/main/webapp/node_modules
+      - src/main/webapp/build
 
 build-native:
   image:  quay.io/quarkus/ubi-quarkus-native-image:21.3.1-java11
@@ -35,6 +41,12 @@ build-native:
     name: native-binary
     paths:
       - build/*-runner
+  cache:
+    key: "$CI_COMMIT_REF_SLUG"
+    paths:
+      - .gradle
+      - node
+      - build
   variables:
     JAVA_OPTS: "-Xmx4G -Dquarkus.native.native-image-xmx=3G"
 
@@ -43,6 +55,14 @@ test-native:
   stage: test-native
   script:
     - ./gradlew testNative
+  cache:
+    key: "$CI_COMMIT_REF_SLUG"
+    paths:
+      - .gradle
+      - node
+      - build
+      - src/main/webapp/node_modules
+      - src/main/webapp/build
   variables:
     JAVA_OPTS: "-Xmx4G -Dquarkus.native.native-image-xmx=3G"
 
@@ -61,3 +81,4 @@ docker-native-build:
       --dockerfile $CI_PROJECT_DIR/src/main/docker/Dockerfile.native-micro
       --destination $CI_REGISTRY_IMAGE:$TAG
       --cache=true
+  cache: {}
