@@ -60,6 +60,8 @@ build-native:
     paths:
       - .gradle
       - build
+      - node
+      - src/main/webapp/node_modules
       - src/main/webapp/build
   variables:
     JAVA_OPTS: "-Xmx4G -Dquarkus.native.native-image-xmx=3500M"
