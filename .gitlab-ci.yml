@@ -54,7 +54,7 @@ build-native:
   image:  $JAVA_IMAGE
   stage: build-native
   script:
-    - ./gradlew build -Dquarkus.package.type=native
+    - ./gradlew quarkusBuild -Dquarkus.package.type=native
   artifacts:
     name: native-binary
     paths:
@@ -62,9 +62,6 @@ build-native:
   cache:
     - key: "$CI_COMMIT_REF_SLUG"
       paths:
-        - node
-        - src/main/webapp/node_modules
-        - src/main/webapp/build
         - .gradle
         - build
   variables:
