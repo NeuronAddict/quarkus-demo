@@ -54,6 +54,7 @@ docker-native-build:
   script:
     - mkdir -p /kaniko/.docker
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - ls -al build/*
     - >
       /kaniko/executor
       --context $CI_PROJECT_DIR
