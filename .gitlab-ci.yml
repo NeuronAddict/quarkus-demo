@@ -35,17 +35,12 @@ docker-native-build:
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
-  artifacts:
-    name: native-binary
-    paths:
-      - build/*-runner
   script:
     - mkdir -p /kaniko/.docker
-    - ls -al *
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
     - >
       /kaniko/executor
-      --context $CI_PROJECT_DIR/src/main/docker
+      --context $CI_PROJECT_DIR
       --dockerfile $CI_PROJECT_DIR/src/main/docker/Dockerfile.native-micro
       --destination $CI_REGISTRY_IMAGE:$TAG
       --cache=true
