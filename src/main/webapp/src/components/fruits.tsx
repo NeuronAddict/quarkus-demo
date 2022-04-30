@@ -17,7 +17,7 @@ const Fruits = ({ fruits }: Props) => {
                 </tr>
                 </thead>
                 {fruits.map((fruit: Fruit) => (
-                    <tbody role="rowgroup">
+                    <tbody>
                     <tr role="row">
                         <td role="cell" data-label="Particle name">{fruit.name}</td>
                     </tr>
