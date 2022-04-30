@@ -95,5 +95,7 @@ docker-native-build:
       --context $CI_PROJECT_DIR
       --dockerfile $CI_PROJECT_DIR/src/main/docker/Dockerfile.native-micro
       --destination $CI_REGISTRY_IMAGE:$TAG
+      --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+      --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
       --cache=true
   cache: {}
