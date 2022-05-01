@@ -26,16 +26,35 @@ build:
   image: $JAVA_IMAGE
   stage: build
   script:
-    - ./gradlew assemble
+    - ./gradlew quarkusBuild
+  artifacts:
+    name: jar
+    paths:
+      - build/quarkus-app
+      - build/libs
   cache:
     - key: "$CI_COMMIT_REF_SLUG"
       paths:
         - .gradle
         - node
         - build
-        - src/main/webapp/node_modules
-        - src/main/webapp/build
-        - src/main/resources/META-INF/resources
+
+build frontend:
+  image: registry.access.redhat.com/ubi8/openjdk-17:1.12-1
+  stage: build
+  script:
+    - ./gradlew assembleFrontend
+  artifacts:
+    name: frontend
+    paths:
+      - src/main/resources/META-INF/resources
+  cache:
+    - key: "$CI_COMMIT_REF_SLUG"
+      paths:
+        - .gradle
+        - node
+        - build
+      policy: pull
 
 test:
   image: $JAVA_IMAGE
@@ -49,9 +68,6 @@ test:
         - .gradle
         - node
         - build
-        - src/main/webapp/build
-        - src/main/webapp/node_modules
-        - src/main/resources/META-INF/resources
 
 build-native:
   image:  $JAVA_IMAGE
@@ -67,7 +83,6 @@ build-native:
       paths:
         - .gradle
         - build
-        - src/main/resources/META-INF/resources
   variables:
     JAVA_OPTS: "-Xmx4G -Dquarkus.native.native-image-xmx=3500M"
 
