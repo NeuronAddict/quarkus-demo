@@ -48,6 +48,7 @@ build frontend:
     name: frontend
     paths:
       - src/main/resources/META-INF/resources
+      - build/resources/main/META-INF/resources
   cache:
     - key: "$CI_COMMIT_REF_SLUG"
       paths:
