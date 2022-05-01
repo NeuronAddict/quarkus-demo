@@ -1,6 +1,5 @@
 variables:
-  JAVA_IMAGE: registry.access.redhat.com/ubi8/openjdk-17:1.12-1
-  NATIVE_IMAGE: quay.io/quarkus/ubi-quarkus-native-image:21.3-java17
+  JAVA_IMAGE: quay.io/quarkus/ubi-quarkus-native-image:21.3-java17
 
 stages:
   - dependencies
@@ -55,7 +54,7 @@ test:
         - src/main/resources/META-INF/resources
 
 build-native:
-  image:  $NATIVE_IMAGE
+  image:  $JAVA_IMAGE
   stage: build-native
   script:
     - ./gradlew quarkusBuild -Dquarkus.package.type=native
