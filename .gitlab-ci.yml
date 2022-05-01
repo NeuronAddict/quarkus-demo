@@ -41,7 +41,7 @@ test:
   image: $JAVA_IMAGE
   stage: test
   script:
-    - ./gradlew check --stacktrace
+    - ./gradlew check
   cache:
     - key: "$CI_COMMIT_REF_SLUG"
       paths:
