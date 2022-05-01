@@ -40,10 +40,11 @@ build:
         - build
 
 build frontend:
-  image: registry.access.redhat.com/ubi8/openjdk-17:1.12-1
+  image: $JAVA_IMAGE
   stage: build
   script:
     - ./gradlew assembleFrontend
+    - ls -al src/main/resources/META-INF/resources/
   artifacts:
     name: frontend
     paths:

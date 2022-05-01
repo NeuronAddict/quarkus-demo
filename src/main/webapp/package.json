@@ -16,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:prod": "cross-env REACT_APP=production react-scripts build --dest && node sync.js",
+    "build:prod": "cross-env REACT_APP=production react-scripts build --dest && mkdir ../resources/META-INF/resources && cp -r build/* ../resources/META-INF/resources/",
     "test": "react-scripts test",
     "test-ci": "cross-env CI=true react-scripts test",
     "eject": "react-scripts eject"
