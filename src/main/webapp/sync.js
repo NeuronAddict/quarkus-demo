@@ -1,5 +1,7 @@
 const Rsync = require('rsync');
 
+console.log('[React sync] Sync frontend. current folder = ', process.cwd())
+
 // Build the command
 const rsync = new Rsync()
     .archive()
@@ -8,5 +10,5 @@ const rsync = new Rsync()
 
 // Execute the command
 rsync.execute(function(error, code, cmd) {
-    console.log('All done executing', cmd);
+    console.log('[React sync] All done executing ', cmd);
 });
