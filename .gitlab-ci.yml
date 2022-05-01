@@ -22,7 +22,7 @@ get dependencies:
       paths:
         - .gradle
 
-build:
+build java:
   image: $JAVA_IMAGE
   stage: build
   script:
@@ -36,7 +36,6 @@ build:
     - key: "$CI_COMMIT_REF_SLUG"
       paths:
         - .gradle
-        - node
         - build
 
 build frontend:
@@ -57,18 +56,34 @@ build frontend:
         - build
       policy: pull
 
-test:
+test java:
   image: $JAVA_IMAGE
   stage: test
+  dependencies:
+    - build java
   script:
-    - ls -al src/main/resources/*
-    - ./gradlew check
+    - ./gradlew test
+  cache:
+    - key: "$CI_COMMIT_REF_SLUG"
+      paths:
+        - .gradle
+        - build
+      policy: pull
+
+test frontend:
+  image: $JAVA_IMAGE
+  stage: test
+  dependencies:
+    - build frontend
+  script:
+    - ./gradlew checkFrontend
   cache:
     - key: "$CI_COMMIT_REF_SLUG"
       paths:
         - .gradle
         - node
         - build
+      policy: pull
 
 build-native:
   image:  $JAVA_IMAGE
