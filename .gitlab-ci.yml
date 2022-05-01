@@ -59,8 +59,6 @@ build frontend:
 test java:
   image: $JAVA_IMAGE
   stage: test
-  dependencies:
-    - build java
   script:
     - ./gradlew test
   cache:
@@ -73,8 +71,6 @@ test java:
 test frontend:
   image: $JAVA_IMAGE
   stage: test
-  dependencies:
-    - build frontend
   script:
     - ./gradlew checkFrontend
   cache:
