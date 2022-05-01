@@ -16,6 +16,8 @@ dependencies {
     implementation 'io.quarkus:quarkus-arc'
     implementation 'io.quarkus:quarkus-hibernate-reactive-panache'
     implementation 'io.quarkus:quarkus-reactive-pg-client'
+    implementation 'io.quarkus:quarkus-kubernetes'
+    implementation 'io.quarkus:quarkus-smallrye-health'
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
 
