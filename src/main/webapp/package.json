@@ -19,7 +19,8 @@
     "build:prod": "cross-env REACT_APP=production react-scripts build --dest && mkdir ../resources/META-INF/resources && cp -r build/* ../resources/META-INF/resources/",
     "test": "react-scripts test",
     "test-ci": "cross-env CI=true react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "clean": "npm clean"
   },
   "proxy": "http://localhost:8080/",
   "eslintConfig": {
