@@ -41,6 +41,7 @@ test:
   image: $JAVA_IMAGE
   stage: test
   script:
+    - ls -al src/main/resources/*
     - ./gradlew check
   cache:
     - key: "$CI_COMMIT_REF_SLUG"
