@@ -90,6 +90,11 @@ docker-native-build:
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [ "" ]
+  cache:
+    - key: "$CI_COMMIT_REF_SLUG"
+      paths:
+        - src/main/resources/META-INF/resources
+      policy: pull
   script:
     - mkdir -p /kaniko/.docker
     - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
@@ -101,4 +106,3 @@ docker-native-build:
       --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
       --destination $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
       --cache=true
-  cache: {}
