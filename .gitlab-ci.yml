@@ -62,7 +62,7 @@ test java:
   image: $JAVA_IMAGE
   stage: test
   script:
-    - cp src/test/resources/gitlab-config config
+    - cp -r src/test/resources/gitlab-config config/
     - ./gradlew test
   cache:
     - key: "$CI_COMMIT_REF_SLUG"
