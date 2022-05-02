@@ -62,6 +62,7 @@ test java:
   image: $JAVA_IMAGE
   stage: test
   script:
+    - cp src/main/test/resources/gitlab-config config
     - ./gradlew test
   cache:
     - key: "$CI_COMMIT_REF_SLUG"
@@ -69,6 +70,12 @@ test java:
         - .gradle
         - build
       policy: pull
+  services:
+    - bitnami/postgresql:14
+  variables:
+    POSTGRES_USER: quarkus
+    POSTGRES_PASSWORD: quarkus
+    POSTGRES_DB: default
 
 test frontend:
   image: $JAVA_IMAGE
