@@ -15,12 +15,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "build:prod": "cross-env REACT_APP=production react-scripts build --dest && mkdir ../resources/META-INF/resources && cp -r build/* ../resources/META-INF/resources/",
+    "build": "react-scripts build && node sync.js",
+    "build:prod": "cross-env REACT_APP=production react-scripts build && node sync.js",
     "test": "react-scripts test",
     "test-ci": "cross-env CI=true react-scripts test",
     "eject": "react-scripts eject",
-    "clean": "npm clean"
+    "clean": "node clean.js"
   },
   "proxy": "http://localhost:8080/",
   "eslintConfig": {

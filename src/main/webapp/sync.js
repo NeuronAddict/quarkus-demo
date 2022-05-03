@@ -1,19 +1,15 @@
-const Rsync = require('rsync');
+const fs = require('fs-extra');
+const {throws} = require("assert");
 
-console.log('[React sync] Sync frontend. current folder = ', process.cwd())
-
-// Build the command
-const rsync = new Rsync()
-    .archive()
-    .source('build/*')
-    .destination('../resources/META-INF/resources')
-    .flags('v', true);
-
-// Execute the command
-rsync.execute(function(error, code, stderr) {
-    console.log('[React sync] All done executing ', code);
-    if( code !== 0) {
-        console.error(stderr, error);
-        throw Error(stderr);
+async function sync () {
+    try {
+        await fs.copy('build', '../resources/META-INF/resources');
+        console.log('successfull copy build/ to ../resources/META-INF/resources/');
+        return false;
+    } catch (err) {
+        console.error(err);
+        return err;
     }
-});
+}
+
+sync().catch(reason => throws(reason));
