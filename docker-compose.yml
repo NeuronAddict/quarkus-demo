@@ -7,14 +7,16 @@ services:
     environment:
       POSTGRES_USER: quarkus
       POSTGRES_PASSWORD: quarkus
-      POSTGRES_DB: default
+      POSTGRES_DB: fruits
     ports:
       - '127.0.0.1:54321:5432'
 
   quarkus-demo:
     build:
       context: .
-      dockerfile: src/main/docker/Dockerfile.multistage
+      dockerfile: src/main/docker/Dockerfile.jvm
+    volumes:
+      - ./docker-config:/deployments/config/
     depends_on:
       - database
     ports:
