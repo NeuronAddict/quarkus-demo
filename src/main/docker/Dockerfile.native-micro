@@ -10,11 +10,11 @@
 #
 # Then, build the image with:
 #
-# docker build -f src/main/docker/Dockerfile.native-micro -t quarkus/quarkus-demo .
+# docker build -f src/main/docker/Dockerfile.native-micro -t quarkus/code-with-quarkus .
 #
 # Then run the container using:
 #
-# docker run -i --rm -p 8080:8080 quarkus/quarkus-demo
+# docker run -i --rm -p 8080:8080 quarkus/code-with-quarkus
 #
 ###
 FROM quay.io/quarkus/quarkus-micro-image:1.0
@@ -32,7 +32,6 @@ COPY --chown=1001:root build/*-runner /work/application
 COPY --chown=0:0 src/main/docker/passwd-fix/passwd.init /etc/passwd
 
 EXPOSE 8080
-
 USER 1001
 
 CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
